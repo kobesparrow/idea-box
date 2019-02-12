@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="normalize.css">
+  <link rel="stylesheet" type="text/css" href="styles.css">
+  <title>Idea Box</title>
+</head>
+<body>
+  <header>
+    <h1>ideabox<span class="triples">triples</span></h1>
+    <div class="search-input">
+      <input type="text" placeholder="Search">
+      <!-- search icon -->
+    </div>
+  </header>
+  <form>
+    <label for="title">Title</label>
+    <input type="text" id="title" class="title-input">
+    <label for="body">Body</label>
+    <input type="text" id="body" class="body-input">
+    <input type="submit" value="Save">
+  </form>
+  <section class="card-area">
+    <article class="idea-card">
+      <h2 class="card-title">Idea Card Title</h2>
+      <p class="card-body">Lorem ipsum</p>
+      <div class="card-footer">
+        <img src="downarrow">
+        <img src="uparrow">
+        <h4 class="card-quality">Quality: Swill</h4>
+        <img src="delete">
+      </div>
+    </article>
+  </section>
+</body>
+<script type="text/javascript" src="idea.js"></script>
+<script type="text/javascript" src="main.js"></script>
+</html>
