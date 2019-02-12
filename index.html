@@ -15,13 +15,16 @@
       <i class="fas fa-search"></i>
     </div>
   </header>
-  <form>
-    <label for="title">Title</label>
-    <input type="text" id="title" class="title-input">
-    <label for="body">Body</label>
-    <input type="text" id="body" class="body-input">
-    <input type="submit" value="Save">
-  </form>
+  <div class="top-section">
+    <form>
+      <label class="form-styles" for="title">Title</label>
+      <input class="title-input" type="text" id="title">
+      <label class="form-styles" for="body">Body</label>
+      <!-- <input class="body-input" type="text" id="body"> -->
+      <textarea class="body-input"></textarea>
+      <input class="form-styles form-btn" type="submit" value="Save">
+    </form>
+  </div>
   <section class="card-area">
     <article class="idea-card">
       <h2 class="card-title">Idea Card Title</h2>
