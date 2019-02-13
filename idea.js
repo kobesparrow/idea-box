@@ -2,8 +2,9 @@ class Idea {
   constructor(title, body, id) {
     this.title = title;
     this.body = body;
-    this.id = id 
-    console.log(this.id);
+    this.id = id;
+    this.quality = 'Swill';
+  
   }
 
   saveToStorage() {
