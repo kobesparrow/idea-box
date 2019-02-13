@@ -25,6 +25,7 @@ function newCard(e) {
     ideas.push(newObject);
     // console.log(ideas);
     newObject.saveToStorage(ideas);
+    newObject.displayIdeas();
     generateIdeaCard(newObject);
     title.value = '';
     body.value = '';
