@@ -37,7 +37,7 @@ function generateIdeaCard(newObject) {
         <div class="card-footer-left-buttons">
           <img src="assets/downvote.svg">
           <img src="assets/upvote.svg"> 
-          <h4 class="card-quality">quality</h4>
+          <h4 class="card-quality">Quality: ${newObject.quality}</h4>
         </div>
         <img src="assets/delete.svg">
       </div>
