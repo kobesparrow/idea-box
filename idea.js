@@ -7,8 +7,9 @@ class Idea {
   
   }
 
-  saveToStorage() {
-
+  saveToStorage(pants) {
+    var stringified = JSON.stringify(pants);
+    localStorage.setItem("stringifiedIdeas", stringified);
   }
 
 

@@ -21,15 +21,18 @@ saveBtn.addEventListener('click', newCard);
 
 function newCard(e) {
   e.preventDefault();
-var newObject = new Idea(title.value, body.value, Date.now());
-  generateIdeaCard(newObject);
+  var newObject = new Idea(title.value, body.value, Date.now());
+    ideas.push(newObject);
+    // console.log(ideas);
+    newObject.saveToStorage(ideas);
+    generateIdeaCard(newObject);
+    title.value = '';
+    body.value = '';
 };
 
 
 function generateIdeaCard(newObject) {
-  // e.preventDefault();
-  // var newObject = new Idea(title, body, newObject);
-  var card = 
+ var card = 
   `<article class="idea-card" data-id=${newObject.id}>
       <h2 class="card-title">${newObject.title}</h2>
       <p class="card-body">${newObject.body}</p>
