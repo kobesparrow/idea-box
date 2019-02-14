@@ -43,7 +43,7 @@ function newCard(e) {
     generateIdeaCard(newObject);
     title.value = '';
     body.value = '';
-};
+}
 
 
 function generateIdeaCard(newObject) {
@@ -53,15 +53,15 @@ function generateIdeaCard(newObject) {
     <article class="idea-card" data-id=${newObject.id}>
       <h2 class="card-title">${newObject.title}</h2>
       <p class="card-body">${newObject.body}</p>
-      <div class="card-footer">
+      <footer class="card-footer">
         <div class="card-footer-left-buttons">
           <input type="image" class="btns" src="assets/downvote.svg">
           <input type="image" class="btns" src="assets/upvote.svg"> 
           <h4 class="card-quality">Quality: ${newObject.quality}</h4>
         </div>
         <input type="image" class="btns" src="assets/delete.svg">
-      </div>
+      </footer>
     </article>
     `
     cardContainer.insertAdjacentHTML('afterbegin', card);
-};
+}
