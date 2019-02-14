@@ -1,12 +1,11 @@
 // -----------------GLOBAL VARIABLES-------------------------
 
-var cardContainer = document.querySelector('.card-area');
 var saveBtn = document.querySelector('.form-btn');
 
 var title = document.querySelector('.title-input');
 var body = document.querySelector('.body-input');
 
-var ideas = [];
+var ideas = JSON.parse(localStorage.getItem('stringifiedIdeas')) || []; 
 
 
 
@@ -14,10 +13,25 @@ var ideas = [];
 // ----------------EVENT LISTENERS---------------------------
 
 saveBtn.addEventListener('click', newCard);
+window.addEventListener('load', onLoad(ideas));
+// document.querySelector('body').addEventListener('keydown', keyCheck);
 
 
 
 // ----------------FUNCTIONS---------------------------------
+
+// function keyCheck(e) {
+//   console.log(e.key)
+// }
+
+function onLoad(oldIdeas) {
+  ideas = [];
+  oldIdeas.forEach(function(idea){
+    var newObject = new Idea(idea.title, idea.body, idea.id);
+    ideas.push(newObject);
+    generateIdeaCard(idea);
+  });
+}
 
 function newCard(e) {
   e.preventDefault();
@@ -25,7 +39,7 @@ function newCard(e) {
     ideas.push(newObject);
     // console.log(ideas);
     newObject.saveToStorage(ideas);
-    newObject.displayIdeas();
+    // newObject.displayIdeas();
     generateIdeaCard(newObject);
     title.value = '';
     body.value = '';
@@ -33,18 +47,21 @@ function newCard(e) {
 
 
 function generateIdeaCard(newObject) {
- var card = 
-  `<article class="idea-card" data-id=${newObject.id}>
+  var cardContainer = document.querySelector('.card-area');
+  console.log(newObject);
+  var card = `
+    <article class="idea-card" data-id=${newObject.id}>
       <h2 class="card-title">${newObject.title}</h2>
       <p class="card-body">${newObject.body}</p>
       <div class="card-footer">
         <div class="card-footer-left-buttons">
-          <img src="assets/downvote.svg">
-          <img src="assets/upvote.svg"> 
+          <input type="image" class="btns" src="assets/downvote.svg">
+          <input type="image" class="btns" src="assets/upvote.svg"> 
           <h4 class="card-quality">Quality: ${newObject.quality}</h4>
         </div>
-        <img src="assets/delete.svg">
+        <input type="image" class="btns" src="assets/delete.svg">
       </div>
-    </article>`
-    cardContainer.innerHTML += card
+    </article>
+    `
+    cardContainer.insertAdjacentHTML('afterbegin', card);
 };
