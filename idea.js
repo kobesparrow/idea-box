@@ -13,13 +13,6 @@ class Idea {
     // console.log(stringified);
   }
 
-  // displayIdeas() {
-  //   var storedIdeas = localStorage.getItem("stringifiedIdeas");
-  //   var parsedIdeas = JSON.parse(storedIdeas);
-  //   console.log(parsedIdeas)
-  // }
-
-
   deleteFromStorage() {
 
   }
