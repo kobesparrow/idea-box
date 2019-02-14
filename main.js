@@ -13,7 +13,7 @@ var ideas = JSON.parse(localStorage.getItem('stringifiedIdeas')) || [];
 // ----------------EVENT LISTENERS---------------------------
 
 saveBtn.addEventListener('click', newCard);
-window.addEventListener('load', onLoad);
+window.addEventListener('load', onLoad(ideas));
 // document.querySelector('body').addEventListener('keydown', keyCheck);
 
 
@@ -24,8 +24,11 @@ window.addEventListener('load', onLoad);
 //   console.log(e.key)
 // }
 
-function onLoad() {
-  ideas.forEach(function(idea){
+function onLoad(oldIdeas) {
+  ideas = [];
+  oldIdeas.forEach(function(idea){
+    var newObject = new Idea(idea.title, idea.body, idea.id);
+    ideas.push(newObject);
     generateIdeaCard(idea);
   });
 }
