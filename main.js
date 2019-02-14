@@ -1,9 +1,14 @@
 // -----------------GLOBAL VARIABLES-------------------------
 
 var saveBtn = document.querySelector('.form-btn');
+// console.log(saveBtn, 'save button');
+
 
 var title = document.querySelector('.title-input');
 var body = document.querySelector('.body-input');
+var cardArea = document.querySelector('.card-area');
+
+
 
 var ideas = JSON.parse(localStorage.getItem('stringifiedIdeas')) || []; 
 
@@ -12,8 +17,9 @@ var ideas = JSON.parse(localStorage.getItem('stringifiedIdeas')) || [];
 
 // ----------------EVENT LISTENERS---------------------------
 
-saveBtn.addEventListener('click', newCard);
 window.addEventListener('load', onLoad(ideas));
+saveBtn.addEventListener('click', newCard);
+cardArea.addEventListener('click', deleteCard);
 // document.querySelector('body').addEventListener('keydown', keyCheck);
 
 
@@ -59,9 +65,17 @@ function generateIdeaCard(newObject) {
           <input type="image" class="btns" src="assets/upvote.svg"> 
           <h4 class="card-quality">Quality: ${newObject.quality}</h4>
         </div>
-        <input type="image" class="btns" src="assets/delete.svg">
+        <input type="image" class="btns dlt-btn" src="assets/delete.svg">
       </footer>
     </article>
     `
     cardContainer.insertAdjacentHTML('afterbegin', card);
 }
+
+function deleteCard(event) {
+  // var selectedCard = document.querySelector('.idea-card');
+
+  // if (event.target.className === 'dlt-btn')  { 
+  // selectedCard.remove();
+  }
+// }
