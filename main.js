@@ -72,10 +72,8 @@ function generateIdeaCard(newObject) {
     cardContainer.insertAdjacentHTML('afterbegin', card);
 }
 
-function deleteCard(event) {
-  // var selectedCard = document.querySelector('.idea-card');
-
-  // if (event.target.className === 'dlt-btn')  { 
-  // selectedCard.remove();
+function deleteCard(event) { 
+  if (event.target.className.includes('dlt-btn')) {
+    event.target.parentElement.parentElement.remove();
   }
-// }
+}
