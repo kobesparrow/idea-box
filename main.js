@@ -3,12 +3,9 @@
 var saveBtn = document.querySelector('.form-btn');
 // console.log(saveBtn, 'save button');
 
-
 var title = document.querySelector('.title-input');
 var body = document.querySelector('.body-input');
 var cardArea = document.querySelector('.card-area');
-
-
 
 var ideas = JSON.parse(localStorage.getItem('stringifiedIdeas')) || []; 
 
@@ -36,6 +33,7 @@ function onLoad(oldIdeas) {
     var newObject = new Idea(idea.title, idea.body, idea.id);
     ideas.push(newObject);
     generateIdeaCard(idea);
+    console.log(newObject)
   });
 }
 
@@ -54,7 +52,7 @@ function newCard(e) {
 
 function generateIdeaCard(newObject) {
   var cardContainer = document.querySelector('.card-area');
-  console.log(newObject);
+  // console.log(newObject);
   var card = `
     <article class="idea-card" data-id=${newObject.id}>
       <h2 class="card-title">${newObject.title}</h2>
@@ -73,7 +71,15 @@ function generateIdeaCard(newObject) {
 }
 
 function deleteCard(event) { 
+  var cardID = parseInt(event.target.parentElement.parentElement.dataset.id);
   if (event.target.className.includes('dlt-btn')) {
     event.target.parentElement.parentElement.remove();
+    ideas[0].deleteFromStorage(cardID);
   }
+  // invoke delete from storage
+
+  // oldId.deleteFromStorage(oldId.id)  
 }
+
+
+
