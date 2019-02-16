@@ -8,9 +8,6 @@ var cardArea = document.querySelector('.card-area');
 var searchInput = document.querySelector('.search-input');
 var cardContainer = document.querySelector('.card-area');
 
-
-
-
 var ideas = JSON.parse(localStorage.getItem('stringifiedIdeas')) || []; 
 
 
@@ -69,10 +66,10 @@ function generateIdeaCard(newObject) {
 }
 
 function deleteCard(event) { 
-  var cardID = parseInt(event.target.parentElement.parentElement.dataset.id);
+  var cardId = parseInt(event.target.parentElement.parentElement.dataset.id);
   if (event.target.className.includes('dlt-btn')) {
     event.target.parentElement.parentElement.remove();
-    ideas[0].deleteFromStorage(cardID);
+    ideas[0].deleteFromStorage(cardId);
   }
 }
 
@@ -93,10 +90,18 @@ function filterText() {
 }
 
 function saveCardAgain(event) {
+  var cardId = parseInt(event.target.parentElement.dataset.id);
+  var cardText = event.target.innerText;
+  var check = event.target.classList.contains('card-title');
   if (event.keyCode === 13) {
-  // updateContent();
+    ideas.forEach(function (idea) {
+      if(idea.id === cardId) {
+        idea.updateContent(cardText, check);
+      } 
+    })
   }
 }
+    // newObject.updateContent(cardId, cardTitle, cardBody);
 
 // function saveOnReturn(e) {
 //   var cardTitle = e.target.closest('.card-container').firstChild.nextElementSibling.innerText;
