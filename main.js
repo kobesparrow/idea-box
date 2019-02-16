@@ -1,11 +1,13 @@
 // -----------------GLOBAL VARIABLES-------------------------
 
 var saveBtn = document.querySelector('.form-btn');
-// console.log(saveBtn, 'save button');
-
+var searchBtn = document.querySelector('.fa-search');
 var title = document.querySelector('.title-input');
 var body = document.querySelector('.body-input');
 var cardArea = document.querySelector('.card-area');
+var searchInput = document.querySelector('.search-input');
+var cardContainer = document.querySelector('.card-area');
+
 
 var ideas = JSON.parse(localStorage.getItem('stringifiedIdeas')) || []; 
 
@@ -17,15 +19,11 @@ var ideas = JSON.parse(localStorage.getItem('stringifiedIdeas')) || [];
 window.addEventListener('load', onLoad(ideas));
 saveBtn.addEventListener('click', newCard);
 cardArea.addEventListener('click', deleteCard);
-// document.querySelector('body').addEventListener('keydown', keyCheck);
-
+searchBtn.addEventListener('click', filterText);
+searchInput.addEventListener('keyup', filterText);
 
 
 // ----------------FUNCTIONS---------------------------------
-
-// function keyCheck(e) {
-//   console.log(e.key)
-// }
 
 function onLoad(oldIdeas) {
   ideas = [];
@@ -33,7 +31,7 @@ function onLoad(oldIdeas) {
     var newObject = new Idea(idea.title, idea.body, idea.id);
     ideas.push(newObject);
     generateIdeaCard(idea);
-    console.log(newObject)
+    // console.log(newObject)
   });
 }
 
@@ -41,9 +39,7 @@ function newCard(e) {
   e.preventDefault();
   var newObject = new Idea(title.value, body.value, Date.now());
     ideas.push(newObject);
-    // console.log(ideas);
     newObject.saveToStorage(ideas);
-    // newObject.displayIdeas();
     generateIdeaCard(newObject);
     title.value = '';
     body.value = '';
@@ -51,8 +47,6 @@ function newCard(e) {
 
 
 function generateIdeaCard(newObject) {
-  var cardContainer = document.querySelector('.card-area');
-  // console.log(newObject);
   var card = `
     <article class="idea-card" data-id=${newObject.id}>
       <h2 class="card-title">${newObject.title}</h2>
@@ -76,10 +70,24 @@ function deleteCard(event) {
     event.target.parentElement.parentElement.remove();
     ideas[0].deleteFromStorage(cardID);
   }
-  // invoke delete from storage
-
-  // oldId.deleteFromStorage(oldId.id)  
 }
+
+
+function removeAllCards() {
+  cardContainer.innerHTML = '';
+}
+
+function filterText() {
+  removeAllCards();
+  var searchValue = searchInput.value;
+  var filteredIdeas = ideas.filter(function(shoes) {
+    return shoes.title.toLowerCase().includes(searchValue) || shoes.body.toLowerCase().includes(searchValue); 
+  }); 
+  filteredIdeas.forEach(function(shoes) {
+    generateIdeaCard(shoes);
+  });
+}
+
 
 
 
