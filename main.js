@@ -7,8 +7,7 @@ var body = document.querySelector('.body-input');
 var cardArea = document.querySelector('.card-area');
 var searchInput = document.querySelector('.search-input');
 var cardContainer = document.querySelector('.card-area');
-var cardTitle = document.querySelector('.card-title');
-var cardBody = document.querySelector('.card-body');
+
 
 
 
@@ -22,9 +21,8 @@ var ideas = JSON.parse(localStorage.getItem('stringifiedIdeas')) || [];
 window.addEventListener('load', onLoad(ideas));
 saveBtn.addEventListener('click', newCard);
 cardArea.addEventListener('click', deleteCard);
-
 cardArea.addEventListener('keydown', saveCardAgain);
-
+// cardArea.addEventListener('focusout', saveCardAgain);
 searchBtn.addEventListener('click', filterText);
 searchInput.addEventListener('keyup', filterText);
 
@@ -95,32 +93,25 @@ function filterText() {
 }
 
 function saveCardAgain(event) {
-
-    if (event.keyCode === 13) {
-  alert('YEs');
-}
-}
-
-function saveOnReturn(e) {
-  var cardTitle = e.target.closest('.card-container').firstChild.nextElementSibling.innerText;
-  var cardBody = e.target.closest('.card-container').firstChild.nextElementSibling.nextElementSibling.innerText;
-  var cardId = parseInt(e.target.closest('.card-container').getAttribute('id'));
-  if(e.keyCode === 13) {
-    cardArray.forEach(function (card) {
-      if(card.id === cardId) {
-        card.updateContent(cardTitle, cardBody, cardArray);
-      }
-    });
+  if (event.keyCode === 13) {
+  // updateContent();
   }
 }
 
-// Create event listener for keyboard enter/return AND click anywhere on page
-// event listener triggers the function: saveCardAgain
-// write function for SaveCardAgain(event):
-// saveCardAgain - invoke updateContent() in idea.js
-// upateContent() - identify unique ID of card
-// upateContent() - create new instance while keeping the same unique ID
-// (reminder: doesn’t need to be in same spot in array)
+// function saveOnReturn(e) {
+//   var cardTitle = e.target.closest('.card-container').firstChild.nextElementSibling.innerText;
+//   var cardBody = e.target.closest('.card-container').firstChild.nextElementSibling.nextElementSibling.innerText;
+//   var cardId = parseInt(e.target.closest('.card-container').getAttribute('id'));
+//   if(e.keyCode === 13) {
+//     cardArray.forEach(function (card) {
+//       if(card.id === cardId) {
+//         card.updateContent(cardTitle, cardBody, cardArray);
+//       }
+//     });
+//   }
+// }
+
+
 
 
 
