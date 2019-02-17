@@ -58,7 +58,7 @@ function generateIdeaCard(newObject) {
         <div class="card-footer-left-buttons">
           <input type="image" class="down-vote btns" src="assets/downvote.svg">
           <input type="image" class="up-vote btns" src="assets/upvote.svg"> 
-          <h4 class="card-quality">${newObject.quality}</h4>
+          <h4 class="card-quality">Quality: <span class="vote">${newObject.quality}</span></h4>
         </div>
         <input type="image" class="btns dlt-btn" src="assets/delete.svg">
       </footer>
@@ -107,18 +107,21 @@ function saveCardAgain(event) {
 
 function upVote() {
  var cardId = parseInt(event.target.parentElement.parentElement.parentElement.dataset.id);
- var currentVote = event.target.nextElementSibling.innerText;
+ var currentVote = event.target.nextSibling.nextSibling.firstChild.nextSibling.innerText;
     ideas.forEach(function (idea) {
       if(idea.id === cardId) {
         idea.updateQuality(currentVote);
       }
   })
+
 }
 
-// function downVote() {
-//   var cardId = parseInt(event.target.parentElement.parentElement.parentElement.dataset.id);
-//  var currentVote = event.target.nextElementSibling.innerText;
-// }
+function downVote() {
+ var cardId = parseInt(event.target.parentElement.parentElement.parentElement.dataset.id);
+ var currentVote = event.target.nextSibling;
+ console.log(currentVote);
+
+}
 
 
 

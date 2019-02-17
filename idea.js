@@ -3,7 +3,7 @@ class Idea {
     this.title = title;
     this.body = body;
     this.id = id;
-    this.quality = 'Quality: Swill';
+    this.quality = 'Swill';
   
   }
 
@@ -31,13 +31,11 @@ class Idea {
     this.saveToStorage(ideas);
   }
 
-  updateQuality(check) {
-    console.log('yes mark it does')
-    if (check) {
-      this.quality = 'Plausible'; 
+  updateQuality(socks) {
+    if(socks === 'Swill') {
+      this.quality = 'Plausible';
     }
     this.saveToStorage(ideas);
   }
- // currentVote === 'Quality: Swill';
 
 }
