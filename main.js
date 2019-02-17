@@ -19,6 +19,8 @@ window.addEventListener('load', onLoad(ideas));
 saveBtn.addEventListener('click', newCard);
 cardArea.addEventListener('click', deleteCard);
 cardArea.addEventListener('keydown', saveCardAgain);
+cardArea.addEventListener('click', upVote);
+// cardArea.addEventListener('click', downVote);
 // cardArea.addEventListener('focusout', saveCardAgain);
 searchBtn.addEventListener('click', filterText);
 searchInput.addEventListener('keyup', filterText);
@@ -54,9 +56,9 @@ function generateIdeaCard(newObject) {
       <p class="card-body" contenteditable>${newObject.body}</p>
       <footer class="card-footer">
         <div class="card-footer-left-buttons">
-          <input type="image" class="btns" src="assets/downvote.svg">
-          <input type="image" class="btns" src="assets/upvote.svg"> 
-          <h4 class="card-quality">Quality: ${newObject.quality}</h4>
+          <input type="image" class="down-vote btns" src="assets/downvote.svg">
+          <input type="image" class="up-vote btns" src="assets/upvote.svg"> 
+          <h4 class="card-quality">${newObject.quality}</h4>
         </div>
         <input type="image" class="btns dlt-btn" src="assets/delete.svg">
       </footer>
@@ -93,6 +95,7 @@ function saveCardAgain(event) {
   var cardId = parseInt(event.target.parentElement.dataset.id);
   var cardText = event.target.innerText;
   var check = event.target.classList.contains('card-title');
+  // note to self KAYLA!! make this its own function
   if (event.keyCode === 13) {
     ideas.forEach(function (idea) {
       if(idea.id === cardId) {
@@ -101,20 +104,28 @@ function saveCardAgain(event) {
     })
   }
 }
-    // newObject.updateContent(cardId, cardTitle, cardBody);
 
-// function saveOnReturn(e) {
-//   var cardTitle = e.target.closest('.card-container').firstChild.nextElementSibling.innerText;
-//   var cardBody = e.target.closest('.card-container').firstChild.nextElementSibling.nextElementSibling.innerText;
-//   var cardId = parseInt(e.target.closest('.card-container').getAttribute('id'));
-//   if(e.keyCode === 13) {
-//     cardArray.forEach(function (card) {
-//       if(card.id === cardId) {
-//         card.updateContent(cardTitle, cardBody, cardArray);
-//       }
-//     });
-//   }
+function upVote() {
+ var cardId = parseInt(event.target.parentElement.parentElement.parentElement.dataset.id);
+ var currentVote = event.target.nextElementSibling.innerText;
+    ideas.forEach(function (idea) {
+      if(idea.id === cardId) {
+        idea.updateQuality(currentVote);
+      }
+  })
+}
+
+// function downVote() {
+//   var cardId = parseInt(event.target.parentElement.parentElement.parentElement.dataset.id);
+//  var currentVote = event.target.nextElementSibling.innerText;
 // }
+
+
+
+
+
+
+
 
 
 
