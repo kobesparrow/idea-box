@@ -1,7 +1,8 @@
 // -----------------GLOBAL VARIABLES-------------------------
 
-var saveBtn = document.querySelector('.form-btn');
 var searchBtn = document.querySelector('.fa-search');
+var saveBtn = document.querySelector('.form-btn');
+var showBtn = document.querySelector('.show-btn');
 var title = document.querySelector('.title-input');
 var body = document.querySelector('.body-input');
 var cardArea = document.querySelector('.card-area');
@@ -17,14 +18,16 @@ var ideas = JSON.parse(localStorage.getItem('stringifiedIdeas')) || [];
 
 window.addEventListener('load', onLoad(ideas));
 saveBtn.addEventListener('click', newCard);
+showBtn.addEventListener('click', mostRecentIdeas);
 cardArea.addEventListener('click', deleteCard);
-// cardArea.addEventListener('keydown', saveCardAgain);
 cardArea.addEventListener('click', upVote);
-// cardArea.addEventListener('click', downVote);
-// cardArea.addEventListener('focusout', saveCardAgain);
 searchBtn.addEventListener('click', filterText);
 searchInput.addEventListener('keyup', filterText);
 cardArea.addEventListener('keydown', saveOnReturn);
+
+// cardArea.addEventListener('click', downVote);
+// cardArea.addEventListener('keydown', saveCardAgain);
+// cardArea.addEventListener('focusout', saveCardAgain);
 
 
 // ----------------FUNCTIONS---------------------------------
@@ -129,6 +132,22 @@ function downVote() {
  console.log(currentVote);
 
 }
+
+// if there are more than 10 ideas on the page I want to be able to hide the others
+
+function mostRecentIdeas(event) {
+ event.preventDefault();
+ console.log(ideas);
+ if (ideas.length > 10) {
+   ideas.slice(1);
+   console.log(ideas.slice(-10));
+  // change innerText of button to Show More
+}
+ // else {
+//      show all ideas
+// }
+}
+
 
 
 

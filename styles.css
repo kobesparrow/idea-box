@@ -81,13 +81,21 @@ label {
   padding: 6px 0;
 }
 
+.show-btn {
+  background-color: #5E5C6B;
+  color: #FEFEFE;
+  margin-top: 15px;
+  padding: 6px 0;
+}
+
 .title-input {
   height: 32px;
 }
 
 .title-input,
 .body-input,
-.form-btn {
+.form-btn,
+.show-btn {
   border-radius: 5px;
 }
 
