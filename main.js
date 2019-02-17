@@ -18,12 +18,13 @@ var ideas = JSON.parse(localStorage.getItem('stringifiedIdeas')) || [];
 window.addEventListener('load', onLoad(ideas));
 saveBtn.addEventListener('click', newCard);
 cardArea.addEventListener('click', deleteCard);
-cardArea.addEventListener('keydown', saveCardAgain);
+// cardArea.addEventListener('keydown', saveCardAgain);
 cardArea.addEventListener('click', upVote);
 // cardArea.addEventListener('click', downVote);
 // cardArea.addEventListener('focusout', saveCardAgain);
 searchBtn.addEventListener('click', filterText);
 searchInput.addEventListener('keyup', filterText);
+cardArea.addEventListener('keydown', saveOnReturn);
 
 
 // ----------------FUNCTIONS---------------------------------
@@ -87,8 +88,14 @@ function filterText() {
     return shoes.title.toLowerCase().includes(searchValue) || shoes.body.toLowerCase().includes(searchValue); 
   }); 
   filteredIdeas.forEach(function(shoes) {
-    generateIdeaCard(shoes);
+  generateIdeaCard(shoes);
   });
+}
+
+function saveOnReturn(event) {
+  if (event.keyCode === 13) {
+    saveCardAgain(event);  
+  }
 }
 
 function saveCardAgain(event) {
@@ -96,13 +103,13 @@ function saveCardAgain(event) {
   var cardText = event.target.innerText;
   var check = event.target.classList.contains('card-title');
   // note to self KAYLA!! make this its own function
-  if (event.keyCode === 13) {
+  // if (event.keyCode === 13) {
     ideas.forEach(function (idea) {
       if(idea.id === cardId) {
         idea.updateContent(cardText, check);
       } 
-    })
-  }
+    });
+  // }
 }
 
 function upVote() {
