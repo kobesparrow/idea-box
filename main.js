@@ -7,6 +7,7 @@ var body = document.querySelector('.body-input');
 var cardArea = document.querySelector('.card-area');
 var searchInput = document.querySelector('.search-input');
 var cardContainer = document.querySelector('.card-area');
+var upVoteBtn = document.querySelector('.up-vote');
 
 var ideas = JSON.parse(localStorage.getItem('stringifiedIdeas')) || []; 
 
@@ -114,21 +115,24 @@ function saveCardAgain(event) {
 
 function upVote() {
  var cardId = parseInt(event.target.parentElement.parentElement.parentElement.dataset.id);
- var currentVote = event.target.nextSibling.nextSibling.firstChild.nextSibling.innerText;
+ // var currentVote = event.target.nextSibling.nextSibling.firstChild.nextSibling.innerText;
     ideas.forEach(function (idea) {
       if(idea.id === cardId) {
-        idea.updateQuality(currentVote);
+        idea.updateQuality();
       }
   })
 
 }
 
-function downVote() {
- var cardId = parseInt(event.target.parentElement.parentElement.parentElement.dataset.id);
- var currentVote = event.target.nextSibling;
- console.log(currentVote);
-
-}
+// function downVote() {
+//  var cardId = parseInt(event.target.parentElement.parentElement.parentElement.dataset.id);
+//  // var currentStatus = event.target.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nextSibling;  
+//     ideas.forEach(function (idea) {
+//       if(idea.id === cardId) {
+//         idea.diminishQuality();
+//       }
+//     })
+// }
 
 
 
