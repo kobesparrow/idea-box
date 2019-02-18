@@ -189,17 +189,23 @@ function allIdeas(e) {
 }
 
  
-function mostRecentIdeas(event) {
- event.preventDefault();
+function mostRecentIdeas(e) {
+ e.preventDefault();
  removeAllCards();
- if (ideas.length > 10) {
+ if (showBtn.value === 'Show More') {
+  ideas.forEach(function(bowTie) {
+    generateIdeaCard(bowTie)
+  showBtn.value = 'Show Less';
+  });
+ } else if (ideas.length > 10) {
    var topTen = ideas.slice(-10);
    showBtn.value = 'Show More';
-  }
-  topTen.forEach(function(devin) {
-    generateIdeaCard(devin);
+ topTen.forEach(function(devin) {
+   generateIdeaCard(devin);
   });
+  } 
 }
+
 
 
 
