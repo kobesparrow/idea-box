@@ -9,8 +9,9 @@ var cardArea = document.querySelector('.card-area');
 var searchInput = document.querySelector('.search-input');
 var cardContainer = document.querySelector('.card-area');
 var swillBtn = document.querySelector('#swill');
-// var plausibleBtn = document.querySelector('#plausible');
-// var geniusBtn = document.querySelector('#genius');
+var plausibleBtn = document.querySelector('#plausible');
+var geniusBtn = document.querySelector('#genius');
+var allCardsBtn = document.querySelector('#all-cards');
 
 var ideas = JSON.parse(localStorage.getItem('stringifiedIdeas')) || []; 
 
@@ -27,7 +28,11 @@ cardArea.addEventListener('click', vote);
 searchBtn.addEventListener('click', filterText);
 searchInput.addEventListener('keyup', filterText);
 cardArea.addEventListener('keydown', saveOnReturn);
-swillBtn.addEventListener('click', filterIdeas);
+swillBtn.addEventListener('click', swillIdeas);
+plausibleBtn.addEventListener('click', plausibleIdeas);
+geniusBtn.addEventListener('click', geniusIdeas);
+allCardsBtn.addEventListener('click', allIdeas);
+
 // cardArea.addEventListener('keydown', saveCardAgain);
 // cardArea.addEventListener('focusout', saveCardAgain);
 
@@ -142,7 +147,7 @@ function downsieDaisy() {
  } 
 }
 
-function filterIdeas(e) {
+function swillIdeas(e) {
   e.preventDefault();
   removeAllCards();
   var filteredCards = ideas.filter(function(hat) {
@@ -151,6 +156,36 @@ function filterIdeas(e) {
   filteredCards.forEach(function(hat) {
     generateIdeaCard(hat);
   })
+}
+
+function plausibleIdeas(e) {
+  e.preventDefault();
+  removeAllCards();
+  var filteredCards = ideas.filter(function(hat) {
+    return hat.quality === 'Plausible';
+  });
+  filteredCards.forEach(function(hat) {
+    generateIdeaCard(hat);
+  })
+}
+
+function geniusIdeas(e) {
+  e.preventDefault();
+  removeAllCards();
+  var filteredCards = ideas.filter(function(hat) {
+    return hat.quality === 'Genius';
+  });
+  filteredCards.forEach(function(hat) {
+    generateIdeaCard(hat);
+  })
+}
+
+function allIdeas(e) {
+  e.preventDefault();
+  removeAllCards();
+  ideas.forEach(function(scarf) {
+    generateIdeaCard(scarf)
+  });
 }
 
   // // look into array
