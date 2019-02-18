@@ -31,11 +31,25 @@ class Idea {
     this.saveToStorage(ideas);
   }
 
-  updateQuality(socks) {
-    if(socks === 'Swill') {
+  updateQuality() {
+      event.target.className.includes('up-vote') ? this.increaseQuality() : this.diminishQuality();
+  }
+
+  increaseQuality() {
+    if(this.quality === 'Swill') {
       this.quality = 'Plausible';
+    } else if (this.quality === 'Plausible') {
+      this.quality = 'Genius';
     }
     this.saveToStorage(ideas);
   }
 
+  diminishQuality() {
+    if(this.quality === 'Genius') {
+      this.quality = 'Plausible';
+    } else if (this.quality === 'Plausible') {
+      this.quality = 'Swill';
+    }
+    this.saveToStorage(ideas);
+  }
 }

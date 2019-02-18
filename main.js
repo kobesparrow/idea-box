@@ -18,14 +18,13 @@ var ideas = JSON.parse(localStorage.getItem('stringifiedIdeas')) || [];
 
 window.addEventListener('load', onLoad(ideas));
 saveBtn.addEventListener('click', newCard);
-showBtn.addEventListener('click', mostRecentIdeas);
+// showBtn.addEventListener('click', mostRecentIdeas);
 cardArea.addEventListener('click', deleteCard);
-cardArea.addEventListener('click', upVote);
+cardArea.addEventListener('click', vote);
 searchBtn.addEventListener('click', filterText);
 searchInput.addEventListener('keyup', filterText);
 cardArea.addEventListener('keydown', saveOnReturn);
 
-// cardArea.addEventListener('click', downVote);
 // cardArea.addEventListener('keydown', saveCardAgain);
 // cardArea.addEventListener('focusout', saveCardAgain);
 
@@ -62,7 +61,7 @@ function generateIdeaCard(newObject) {
         <div class="card-footer-left-buttons">
           <input type="image" class="down-vote btns" src="assets/downvote.svg">
           <input type="image" class="up-vote btns" src="assets/upvote.svg"> 
-          <h4 class="card-quality">Quality: <span class="vote">${newObject.quality}</span></h4>
+          <h4 class="card-quality">Quality: <span class="vote" id="quality">${newObject.quality}</span></h4>
         </div>
         <input type="image" class="btns dlt-btn" src="assets/delete.svg">
       </footer>
@@ -105,48 +104,50 @@ function saveCardAgain(event) {
   var cardId = parseInt(event.target.parentElement.dataset.id);
   var cardText = event.target.innerText;
   var check = event.target.classList.contains('card-title');
-  // note to self KAYLA!! make this its own function
-  // if (event.keyCode === 13) {
     ideas.forEach(function (idea) {
       if(idea.id === cardId) {
         idea.updateContent(cardText, check);
       } 
     });
-  // }
 }
 
-function upVote() {
+function vote() {
+ event.target.className.includes('up-vote') ? upsieDaisy() : downsieDaisy();
  var cardId = parseInt(event.target.parentElement.parentElement.parentElement.dataset.id);
- var currentVote = event.target.nextSibling.nextSibling.firstChild.nextSibling.innerText;
     ideas.forEach(function (idea) {
       if(idea.id === cardId) {
-        idea.updateQuality(currentVote);
+        idea.updateQuality();
       }
   })
-
 }
 
-function downVote() {
- var cardId = parseInt(event.target.parentElement.parentElement.parentElement.dataset.id);
- var currentVote = event.target.nextSibling;
- console.log(currentVote);
-
+function upsieDaisy() {
+ var currentVote = event.target.nextSibling.nextSibling.firstChild.nextSibling;
+ if (currentVote.innerText === 'Swill') {
+    currentVote.innerText = 'Plausible';
+ } else if (currentVote.innerText === 'Plausible') {
+    currentVote.innerText = 'Genius';
+ } 
 }
 
-// if there are more than 10 ideas on the page I want to be able to hide the others
-
-function mostRecentIdeas(event) {
- event.preventDefault();
- console.log(ideas);
- if (ideas.length > 10) {
-   ideas.slice(1);
-   console.log(ideas.slice(-10));
-  // change innerText of button to Show More
+function downsieDaisy() {
+ var currentVote = event.target.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nextSibling;
+ if (currentVote.innerText === 'Genius') {
+    currentVote.innerText = 'Plausible';
+ } else if (currentVote.innerText === 'Plausible') {
+    currentVote.innerText = 'Swill';
+ } 
 }
- // else {
-//      show all ideas
+
+// function mostRecentIdeas(event) {
+//  event.preventDefault();
+//  console.log(ideas);
+//  if (ideas.length > 10) {
+//    ideas.slice(1);
+//    console.log(ideas.slice(-10));
+//   // change innerText of button to Show More
+//   }
 // }
-}
 
 
 
