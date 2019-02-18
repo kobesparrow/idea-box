@@ -2,7 +2,7 @@
 
 var searchBtn = document.querySelector('.fa-search');
 var saveBtn = document.querySelector('.form-btn');
-var showBtn = document.querySelector('.show-btn');
+var showBtn = document.querySelector('#show');
 var title = document.querySelector('.title-input');
 var body = document.querySelector('.body-input');
 var cardArea = document.querySelector('.card-area');
@@ -22,7 +22,7 @@ var ideas = JSON.parse(localStorage.getItem('stringifiedIdeas')) || [];
 
 window.addEventListener('load', onLoad(ideas));
 saveBtn.addEventListener('click', newCard);
-// showBtn.addEventListener('click', mostRecentIdeas);
+showBtn.addEventListener('click', mostRecentIdeas);
 cardArea.addEventListener('click', deleteCard);
 cardArea.addEventListener('click', vote);
 searchBtn.addEventListener('click', filterText);
@@ -188,26 +188,18 @@ function allIdeas(e) {
   });
 }
 
-  // // look into array
-  // var searchValue = searchInput.value;
-  // var filteredIdeas = ideas.filter(function(shoes) {
-  //   return shoes.title.toLowerCase().includes(searchValue) || shoes.body.toLowerCase().includes(searchValue); 
-  // }); 
-  // filteredIdeas.forEach(function(shoes) {
-  // generateIdeaCard(shoes);
-  // });
-  // find all quality swills
-  // only display swills
-
-// function mostRecentIdeas(event) {
-//  event.preventDefault();
-//  console.log(ideas);
-//  if (ideas.length > 10) {
-//    ideas.slice(1);
-//    console.log(ideas.slice(-10));
-//   // change innerText of button to Show More
-//   }
-// }
+ 
+function mostRecentIdeas(event) {
+ event.preventDefault();
+ removeAllCards();
+ if (ideas.length > 10) {
+   var topTen = ideas.slice(-10);
+   showBtn.value = 'Show More';
+  }
+  topTen.forEach(function(devin) {
+    generateIdeaCard(devin);
+  });
+}
 
 
 
