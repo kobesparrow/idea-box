@@ -7,7 +7,6 @@ var body = document.querySelector('.body-input');
 var cardArea = document.querySelector('.card-area');
 var searchInput = document.querySelector('.search-input');
 var cardContainer = document.querySelector('.card-area');
-var upVoteBtn = document.querySelector('.up-vote');
 
 var ideas = JSON.parse(localStorage.getItem('stringifiedIdeas')) || []; 
 
@@ -20,7 +19,7 @@ window.addEventListener('load', onLoad(ideas));
 saveBtn.addEventListener('click', newCard);
 cardArea.addEventListener('click', deleteCard);
 // cardArea.addEventListener('keydown', saveCardAgain);
-cardArea.addEventListener('click', upVote);
+cardArea.addEventListener('click', vote);
 // cardArea.addEventListener('click', downVote);
 // cardArea.addEventListener('focusout', saveCardAgain);
 searchBtn.addEventListener('click', filterText);
@@ -60,7 +59,7 @@ function generateIdeaCard(newObject) {
         <div class="card-footer-left-buttons">
           <input type="image" class="down-vote btns" src="assets/downvote.svg">
           <input type="image" class="up-vote btns" src="assets/upvote.svg"> 
-          <h4 class="card-quality">Quality: <span class="vote">${newObject.quality}</span></h4>
+          <h4 class="card-quality">Quality: <span class="vote" id="quality">${newObject.quality}</span></h4>
         </div>
         <input type="image" class="btns dlt-btn" src="assets/delete.svg">
       </footer>
@@ -103,36 +102,21 @@ function saveCardAgain(event) {
   var cardId = parseInt(event.target.parentElement.dataset.id);
   var cardText = event.target.innerText;
   var check = event.target.classList.contains('card-title');
-  // note to self KAYLA!! make this its own function
-  // if (event.keyCode === 13) {
     ideas.forEach(function (idea) {
       if(idea.id === cardId) {
         idea.updateContent(cardText, check);
       } 
     });
-  // }
 }
 
-function upVote() {
+function vote() {
  var cardId = parseInt(event.target.parentElement.parentElement.parentElement.dataset.id);
- // var currentVote = event.target.nextSibling.nextSibling.firstChild.nextSibling.innerText;
     ideas.forEach(function (idea) {
       if(idea.id === cardId) {
         idea.updateQuality();
       }
   })
-
 }
-
-// function downVote() {
-//  var cardId = parseInt(event.target.parentElement.parentElement.parentElement.dataset.id);
-//  // var currentStatus = event.target.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nextSibling;  
-//     ideas.forEach(function (idea) {
-//       if(idea.id === cardId) {
-//         idea.diminishQuality();
-//       }
-//     })
-// }
 
 
 

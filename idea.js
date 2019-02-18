@@ -32,27 +32,30 @@ class Idea {
   }
 
   updateQuality() {
-    // var obj = document.target.nextSibling.nextSibling.firstChild.nextSibling;
+     // var currentVote = event.target.nextSibling.nextSibling.firstChild.nextSibling;
+     var upBtn = event.target.className.includes('up-vote') ? this.increaseQuality() : this.diminishQuality();
+     // var downBtn = event.target.className.includes('down-vote')
+     // console.log(currentVote)
+
+  }
+
+  increaseQuality() {
     if(this.quality === 'Swill') {
       this.quality = 'Plausible';
-      // obj.innerText = 'Plausible';
     } else if (this.quality === 'Plausible') {
       this.quality = 'Genius';
-    } else if (this.quality === 'Genius') {
-      this.quality = 'Genius';
     }
-    // var obj = document.querySelector('.vote')
-    // obj.innerText = this.quality;
+    // currentVote.innerText = this.quality;
     this.saveToStorage(ideas);
   }
 
-  //   diminishQuality() {
-  //   if(this.quality === 'Genius') {
-  //     this.quality = 'Plausible';
-  //   } else if (this.quality === 'Plausible') {
-  //     this.quality = 'Swill';
-  //   }
-  //   this.saveToStorage(ideas);
-  // }
-
+  diminishQuality() {
+    if(this.quality === 'Genius') {
+      this.quality = 'Plausible';
+    } else if (this.quality === 'Plausible') {
+      this.quality = 'Swill';
+    }
+    // currentVote.innerText = this.quality;
+    this.saveToStorage(ideas);
+  }
 }
