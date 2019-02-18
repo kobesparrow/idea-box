@@ -31,11 +31,31 @@ class Idea {
     this.saveToStorage(ideas);
   }
 
-  updateQuality(socks) {
-    if(socks === 'Swill') {
+  updateQuality() {
+     // var currentVote = event.target.nextSibling.nextSibling.firstChild.nextSibling;
+     var upBtn = event.target.className.includes('up-vote') ? this.increaseQuality() : this.diminishQuality();
+     // var downBtn = event.target.className.includes('down-vote')
+     // console.log(currentVote)
+
+  }
+
+  increaseQuality() {
+    if(this.quality === 'Swill') {
       this.quality = 'Plausible';
+    } else if (this.quality === 'Plausible') {
+      this.quality = 'Genius';
     }
+    // currentVote.innerText = this.quality;
     this.saveToStorage(ideas);
   }
 
+  diminishQuality() {
+    if(this.quality === 'Genius') {
+      this.quality = 'Plausible';
+    } else if (this.quality === 'Plausible') {
+      this.quality = 'Swill';
+    }
+    // currentVote.innerText = this.quality;
+    this.saveToStorage(ideas);
+  }
 }
