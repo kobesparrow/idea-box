@@ -1,9 +1,9 @@
 class Idea {
-  constructor(title, body, id) {
+  constructor(title, body, id, quality) {
     this.title = title;
     this.body = body;
     this.id = id;
-    this.quality = 'Swill';
+    this.quality = quality || 'Swill';
   
   }
 

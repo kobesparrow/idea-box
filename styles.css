@@ -81,11 +81,15 @@ label {
   padding: 6px 0;
 }
 
-.show-btn {
+/*.show-btn {
   background-color: #5E5C6B;
   color: #FEFEFE;
   margin-top: 15px;
   padding: 6px 0;
+}*/
+
+.quality-buttons {
+  justify-content: space-between;
 }
 
 .title-input {

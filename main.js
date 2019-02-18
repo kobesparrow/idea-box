@@ -8,6 +8,10 @@ var body = document.querySelector('.body-input');
 var cardArea = document.querySelector('.card-area');
 var searchInput = document.querySelector('.search-input');
 var cardContainer = document.querySelector('.card-area');
+var swillBtn = document.querySelector('#swill');
+var plausibleBtn = document.querySelector('#plausible');
+var geniusBtn = document.querySelector('#genius');
+var allCardsBtn = document.querySelector('#all-cards');
 
 var ideas = JSON.parse(localStorage.getItem('stringifiedIdeas')) || []; 
 
@@ -24,6 +28,10 @@ cardArea.addEventListener('click', vote);
 searchBtn.addEventListener('click', filterText);
 searchInput.addEventListener('keyup', filterText);
 cardArea.addEventListener('keydown', saveOnReturn);
+swillBtn.addEventListener('click', swillIdeas);
+plausibleBtn.addEventListener('click', plausibleIdeas);
+geniusBtn.addEventListener('click', geniusIdeas);
+allCardsBtn.addEventListener('click', allIdeas);
 
 // cardArea.addEventListener('keydown', saveCardAgain);
 // cardArea.addEventListener('focusout', saveCardAgain);
@@ -34,7 +42,7 @@ cardArea.addEventListener('keydown', saveOnReturn);
 function onLoad(oldIdeas) {
   ideas = [];
   oldIdeas.forEach(function(idea){
-    var newObject = new Idea(idea.title, idea.body, idea.id);
+    var newObject = new Idea(idea.title, idea.body, idea.id, idea.quality);
     ideas.push(newObject);
     generateIdeaCard(idea);
     // console.log(newObject)
@@ -138,6 +146,58 @@ function downsieDaisy() {
     currentVote.innerText = 'Swill';
  } 
 }
+
+function swillIdeas(e) {
+  e.preventDefault();
+  removeAllCards();
+  var filteredCards = ideas.filter(function(hat) {
+    return hat.quality === 'Swill';
+  });
+  filteredCards.forEach(function(hat) {
+    generateIdeaCard(hat);
+  })
+}
+
+function plausibleIdeas(e) {
+  e.preventDefault();
+  removeAllCards();
+  var filteredCards = ideas.filter(function(hat) {
+    return hat.quality === 'Plausible';
+  });
+  filteredCards.forEach(function(hat) {
+    generateIdeaCard(hat);
+  })
+}
+
+function geniusIdeas(e) {
+  e.preventDefault();
+  removeAllCards();
+  var filteredCards = ideas.filter(function(hat) {
+    return hat.quality === 'Genius';
+  });
+  filteredCards.forEach(function(hat) {
+    generateIdeaCard(hat);
+  })
+}
+
+function allIdeas(e) {
+  e.preventDefault();
+  removeAllCards();
+  ideas.forEach(function(scarf) {
+    generateIdeaCard(scarf)
+  });
+}
+
+  // // look into array
+  // var searchValue = searchInput.value;
+  // var filteredIdeas = ideas.filter(function(shoes) {
+  //   return shoes.title.toLowerCase().includes(searchValue) || shoes.body.toLowerCase().includes(searchValue); 
+  // }); 
+  // filteredIdeas.forEach(function(shoes) {
+  // generateIdeaCard(shoes);
+  // });
+  // find all quality swills
+  // only display swills
 
 // function mostRecentIdeas(event) {
 //  event.preventDefault();
