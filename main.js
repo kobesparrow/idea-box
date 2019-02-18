@@ -1,7 +1,8 @@
 // -----------------GLOBAL VARIABLES-------------------------
 
-var saveBtn = document.querySelector('.form-btn');
 var searchBtn = document.querySelector('.fa-search');
+var saveBtn = document.querySelector('.form-btn');
+var showBtn = document.querySelector('.show-btn');
 var title = document.querySelector('.title-input');
 var body = document.querySelector('.body-input');
 var cardArea = document.querySelector('.card-area');
@@ -17,14 +18,15 @@ var ideas = JSON.parse(localStorage.getItem('stringifiedIdeas')) || [];
 
 window.addEventListener('load', onLoad(ideas));
 saveBtn.addEventListener('click', newCard);
+// showBtn.addEventListener('click', mostRecentIdeas);
 cardArea.addEventListener('click', deleteCard);
-// cardArea.addEventListener('keydown', saveCardAgain);
 cardArea.addEventListener('click', vote);
-// cardArea.addEventListener('click', downVote);
-// cardArea.addEventListener('focusout', saveCardAgain);
 searchBtn.addEventListener('click', filterText);
 searchInput.addEventListener('keyup', filterText);
 cardArea.addEventListener('keydown', saveOnReturn);
+
+// cardArea.addEventListener('keydown', saveCardAgain);
+// cardArea.addEventListener('focusout', saveCardAgain);
 
 
 // ----------------FUNCTIONS---------------------------------
@@ -110,6 +112,7 @@ function saveCardAgain(event) {
 }
 
 function vote() {
+ event.target.className.includes('up-vote') ? upsieDaisy() : downsieDaisy();
  var cardId = parseInt(event.target.parentElement.parentElement.parentElement.dataset.id);
     ideas.forEach(function (idea) {
       if(idea.id === cardId) {
@@ -117,6 +120,35 @@ function vote() {
       }
   })
 }
+
+function upsieDaisy() {
+ var currentVote = event.target.nextSibling.nextSibling.firstChild.nextSibling;
+ if (currentVote.innerText === 'Swill') {
+    currentVote.innerText = 'Plausible';
+ } else if (currentVote.innerText === 'Plausible') {
+    currentVote.innerText = 'Genius';
+ } 
+}
+
+function downsieDaisy() {
+ var currentVote = event.target.nextSibling.nextSibling.nextSibling.nextSibling.firstChild.nextSibling;
+ if (currentVote.innerText === 'Genius') {
+    currentVote.innerText = 'Plausible';
+ } else if (currentVote.innerText === 'Plausible') {
+    currentVote.innerText = 'Swill';
+ } 
+}
+
+// function mostRecentIdeas(event) {
+//  event.preventDefault();
+//  console.log(ideas);
+//  if (ideas.length > 10) {
+//    ideas.slice(1);
+//    console.log(ideas.slice(-10));
+//   // change innerText of button to Show More
+//   }
+// }
+
 
 
 
