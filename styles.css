@@ -97,6 +97,10 @@ label {
   border: 1.5px solid #D5D2D9;
 }
 
+.body-input {
+  resize: vertical;
+}
+
 .quality-buttons {
   display: flex;
   justify-content: space-between;
@@ -152,8 +156,11 @@ h4 {
 .card-footer-left-buttons {
   align-items: center;
   display: flex;
-  justify-content: space-between;
-  width: 182px;
+}
+
+.down-vote,
+.up-vote {
+  margin-right: 15px;
 }
 
 .show-btn {
