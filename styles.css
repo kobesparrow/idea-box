@@ -81,17 +81,6 @@ label {
   padding: 6px 0;
 }
 
-/*.show-btn {
-  background-color: #5E5C6B;
-  color: #FEFEFE;
-  margin-top: 15px;
-  padding: 6px 0;
-}*/
-
-.quality-buttons {
-  justify-content: space-between;
-}
-
 .title-input {
   height: 32px;
 }
@@ -108,6 +97,14 @@ label {
   border: 1.5px solid #D5D2D9;
 }
 
+.quality-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.q-btn {
+  width: 24%;
+}
 /* --------------- CARDS --------------- */
 
 .idea-card {
@@ -157,4 +154,11 @@ h4 {
   display: flex;
   justify-content: space-between;
   width: 182px;
+}
+
+.show-btn {
+  display: flex;
+  justify-content: center;
+  margin: 20px auto;
+  width: 65%;
 }
