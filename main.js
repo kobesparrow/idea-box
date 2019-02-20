@@ -60,6 +60,7 @@ function newCard(e) {
 }
 
 
+
 function generateIdeaCard(newObject) {
   var card = `
     <article class="idea-card" data-id=${newObject.id}>
@@ -104,6 +105,7 @@ function filterText() {
 
 function saveOnReturn(event) {
   if (event.keyCode === 13) {
+    event.preventDefault();
     saveCardAgain(event);  
   }
 }
