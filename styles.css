@@ -40,7 +40,7 @@ h1 {
   height: 34px;
 }
 
-.magnifyMe {
+.magnify-me {
   background-color: #ADAAB6;
   color: #ffffff;
   padding: 5px;
@@ -49,7 +49,7 @@ h1 {
   width: 40px;
 }
 
-.magnifyMe:hover {
+.magnify-me:hover {
   background-color: #A59BC6;
   cursor: hover;
 }
