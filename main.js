@@ -179,12 +179,12 @@ function allIdeas(e) {
 
 function mostRecentIdeas(e) {
  e.preventDefault();
- removeAllCards();
+  removeAllCards();
  if (showBtn.value === 'Show More') {
   showBtn.value = 'Show Less';
   ideas.forEach(function(bowTie) {
     generateIdeaCard(bowTie);
-  })
+  });
  } else if (ideas.length > 10) {
    var topTen = ideas.slice(-10);
    showBtn.value = 'Show More';
