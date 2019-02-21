@@ -1,6 +1,5 @@
 // -----------------GLOBAL VARIABLES-------------------------
 
-var searchBtn = document.querySelector('.fa-search');
 var saveBtn = document.querySelector('.form-btn');
 var showBtn = document.querySelector('#show');
 var title = document.querySelector('.title-input');
@@ -12,8 +11,8 @@ var swillBtn = document.querySelector('#swill');
 var plausibleBtn = document.querySelector('#plausible');
 var geniusBtn = document.querySelector('#genius');
 var allCardsBtn = document.querySelector('#all-cards');
-
 var ideas = JSON.parse(localStorage.getItem('stringifiedIdeas')) || []; 
+// var searchBtn = document.querySelector('.fa-search');
 
 
 
@@ -25,16 +24,14 @@ saveBtn.addEventListener('click', newCard);
 showBtn.addEventListener('click', mostRecentIdeas);
 cardArea.addEventListener('click', deleteCard);
 cardArea.addEventListener('click', vote);
-searchBtn.addEventListener('click', filterText);
 searchInput.addEventListener('keyup', filterText);
 cardArea.addEventListener('keydown', saveOnReturn);
 swillBtn.addEventListener('click', swillIdeas);
 plausibleBtn.addEventListener('click', plausibleIdeas);
 geniusBtn.addEventListener('click', geniusIdeas);
 allCardsBtn.addEventListener('click', allIdeas);
-
-// cardArea.addEventListener('keydown', saveCardAgain);
-// cardArea.addEventListener('focusout', saveCardAgain);
+cardArea.addEventListener('focusout', saveFocus);
+// searchBtn.addEventListener('click', filterText);
 
 
 // ----------------FUNCTIONS---------------------------------
@@ -45,7 +42,6 @@ function onLoad(oldIdeas) {
     var newObject = new Idea(idea.title, idea.body, idea.id, idea.quality);
     ideas.push(newObject);
     generateIdeaCard(idea);
-    // console.log(newObject)
   });
 }
 
@@ -95,10 +91,10 @@ function removeAllCards() {
 function filterText() {
   removeAllCards();
   var searchValue = searchInput.value;
-  var filteredIdeas = ideas.filter(function(shoes) {
-    return shoes.title.toLowerCase().includes(searchValue) || shoes.body.toLowerCase().includes(searchValue); 
+  var filteredIdeas = ideas.filter(function(guages) {
+    return shoes.title.toLowerCase().includes(searchValue) || shoes.body.toLowerCase().includes(searchValue) || shoes.quality.toLowerCase().includes(searchValue); 
   }); 
-  filteredIdeas.forEach(function(shoes) {
+  filteredIdeas.forEach(function(guages) {
   generateIdeaCard(shoes);
   });
 }
@@ -108,6 +104,10 @@ function saveOnReturn(event) {
     event.preventDefault();
     saveCardAgain(event);  
   }
+}
+
+function saveFocus() {
+  saveCardAgain(event);
 }
 
 function saveCardAgain(event) {
@@ -152,10 +152,10 @@ function downsieDaisy() {
 function swillIdeas(e) {
   e.preventDefault();
   removeAllCards();
-  var filteredCards = ideas.filter(function(hat) {
+  var filteredCards = ideas.filter(function(beard) {
     return hat.quality === 'Swill';
   });
-  filteredCards.forEach(function(hat) {
+  filteredCards.forEach(function(beard) {
     generateIdeaCard(hat);
   })
 }
@@ -163,10 +163,10 @@ function swillIdeas(e) {
 function plausibleIdeas(e) {
   e.preventDefault();
   removeAllCards();
-  var filteredCards = ideas.filter(function(hat) {
+  var filteredCards = ideas.filter(function(bullRing) {
     return hat.quality === 'Plausible';
   });
-  filteredCards.forEach(function(hat) {
+  filteredCards.forEach(function(bullRing) {
     generateIdeaCard(hat);
   })
 }
@@ -174,10 +174,10 @@ function plausibleIdeas(e) {
 function geniusIdeas(e) {
   e.preventDefault();
   removeAllCards();
-  var filteredCards = ideas.filter(function(hat) {
+  var filteredCards = ideas.filter(function(bikingShoes) {
     return hat.quality === 'Genius';
   });
-  filteredCards.forEach(function(hat) {
+  filteredCards.forEach(function(bikingShoes) {
     generateIdeaCard(hat);
   })
 }
@@ -185,16 +185,16 @@ function geniusIdeas(e) {
 function allIdeas(e) {
   e.preventDefault();
   removeAllCards();
-  ideas.forEach(function(scarf) {
-    generateIdeaCard(scarf)
+  ideas.forEach(function(hoodie) {
+    generateIdeaCard(hoodie)
   });
 }
 
  
 function mostRecentIdeas(e) {
  e.preventDefault();
- removeAllCards();
  if (showBtn.value === 'Show More') {
+  removeAllCards();
   ideas.forEach(function(bowTie) {
     generateIdeaCard(bowTie)
   showBtn.value = 'Show Less';

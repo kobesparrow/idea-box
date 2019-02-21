@@ -39,10 +39,11 @@ h1 {
   border-bottom-left-radius: 5px;
   padding-left: 12px;
   width: 15rem;
+  height: 34px;
 }
 
 .fa-search {
-  background-color: #ADAAB6;
+  /*background-color: purple;*/
   color: #ffffff;
   font-size: 24px;
   padding: 5px;
@@ -134,6 +135,8 @@ label {
 .card-body {
   padding: 10px 15px;
   color: #787679;
+  overflow: scroll;
+  max-height: 102px;
 }
 
 h2 {
@@ -168,4 +171,41 @@ h4 {
   justify-content: center;
   margin: 20px auto;
   width: 65%;
+}
+
+@media only screen and (max-width: 650px) {
+  header {
+    flex-direction: column;
+  }
+
+  h1 {
+    margin: 0px;
+    margin-top: 10px;
+  }
+
+  .header-search {
+    margin: 20px auto;
+  }
+
+  .quality-buttons {
+    flex-direction: column;
+  }
+
+  .q-btn {
+    width: 100%
+  }
+}
+
+@media only screen and (max-width: 420px) {
+  form {
+    width: 271px;
+  }
+
+  .header-search {
+    width: 274px;
+  }
+
+  .idea-card {
+    width: 271px;
+  }
 }
