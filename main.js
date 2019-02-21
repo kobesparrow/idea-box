@@ -78,11 +78,11 @@ function removeAllCards() {
 function filterText() {
   removeAllCards();
   var searchValue = searchInput.value;
-  var filteredIdeas = ideas.filter(function(guages) {
-    return guages.title.toLowerCase().includes(searchValue) || guages.body.toLowerCase().includes(searchValue) || guages.quality.toLowerCase().includes(searchValue); 
+  var filteredIdeas = ideas.filter(function(idea) {
+    return idea.title.toLowerCase().includes(searchValue) || idea.body.toLowerCase().includes(searchValue) || idea.quality.toLowerCase().includes(searchValue); 
   }); 
-  filteredIdeas.forEach(function(guages) {
-  generateIdeaCard(guages);
+  filteredIdeas.forEach(function(idea) {
+  generateIdeaCard(idea);
   });
 }
 
@@ -139,58 +139,62 @@ function downsieDaisy() {
 function swillIdeas(e) {
   e.preventDefault();
   removeAllCards();
-  var filteredCards = ideas.filter(function(beard) {
-    return beard.quality === 'Swill';
+  var filteredCards = ideas.filter(function(idea) {
+    return idea.quality === 'Swill';
   });
-  filteredCards.forEach(function(beard) {
-    generateIdeaCard(beard);
+  filteredCards.forEach(function(idea) {
+    generateIdeaCard(idea);
   })
 }
 
 function plausibleIdeas(e) {
   e.preventDefault();
   removeAllCards();
-  var filteredCards = ideas.filter(function(beard) {
-    return beard.quality === 'Plausible';
+  var filteredCards = ideas.filter(function(idea) {
+    return idea.quality === 'Plausible';
   });
-  filteredCards.forEach(function(beard) {
-    generateIdeaCard(beard);
+  filteredCards.forEach(function(idea) {
+    generateIdeaCard(idea);
   })
 }
 
 function geniusIdeas(e) {
   e.preventDefault();
   removeAllCards();
-  var filteredCards = ideas.filter(function(beard) {
-    return beard.quality === 'Genius';
+  var filteredCards = ideas.filter(function(idea) {
+    return idea.quality === 'Genius';
   });
-  filteredCards.forEach(function(beard) {
-    generateIdeaCard(beard);
+  filteredCards.forEach(function(idea) {
+    generateIdeaCard(idea);
   })
 }
 
 function allIdeas(e) {
   e.preventDefault();
   removeAllCards();
-  ideas.forEach(function(hoodie) {
-    generateIdeaCard(hoodie)
+  ideas.forEach(function(idea) {
+    generateIdeaCard(idea)
   });
 }
 
 function mostRecentIdeas(e) {
  e.preventDefault();
- if (showBtn.value === 'Show More') {
   removeAllCards();
+ if (showBtn.value === 'Show More') {
   showBtn.value = 'Show Less';
-  ideas.forEach(function(bowTie) {
-    generateIdeaCard(bowTie);
+  ideas.forEach(function(idea) {
+    generateIdeaCard(idea);
   });
  } else if (ideas.length > 10) {
    var topTen = ideas.slice(-10);
    showBtn.value = 'Show More';
-   topTen.forEach(function(devin) {
-    generateIdeaCard(devin)
+   topTen.forEach(function(idea) {
+    generateIdeaCard(idea)
    });
+  } else {
+    ideas.forEach(function(idea) {
+    generateIdeaCard(idea);
+  });
   }
 }
 
