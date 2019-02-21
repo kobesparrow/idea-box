@@ -1,5 +1,3 @@
-// -----------------GLOBAL VARIABLES-------------------------
-
 var saveBtn = document.querySelector('.form-btn');
 var showBtn = document.querySelector('#show');
 var title = document.querySelector('.title-input');
@@ -14,11 +12,6 @@ var allCardsBtn = document.querySelector('#all-cards');
 var ideas = JSON.parse(localStorage.getItem('stringifiedIdeas')) || []; 
 // var searchBtn = document.querySelector('.fa-search');
 
-
-
-
-// ----------------EVENT LISTENERS---------------------------
-
 window.addEventListener('load', onLoad(ideas));
 saveBtn.addEventListener('click', newCard);
 showBtn.addEventListener('click', mostRecentIdeas);
@@ -32,9 +25,6 @@ geniusBtn.addEventListener('click', geniusIdeas);
 allCardsBtn.addEventListener('click', allIdeas);
 cardArea.addEventListener('focusout', saveFocus);
 // searchBtn.addEventListener('click', filterText);
-
-
-// ----------------FUNCTIONS---------------------------------
 
 function onLoad(oldIdeas) {
   ideas = [];
@@ -54,8 +44,6 @@ function newCard(e) {
     title.value = '';
     body.value = '';
 }
-
-
 
 function generateIdeaCard(newObject) {
   var card = `
@@ -83,7 +71,6 @@ function deleteCard(event) {
   }
 }
 
-
 function removeAllCards() {
   cardContainer.innerHTML = '';
 }
@@ -92,10 +79,10 @@ function filterText() {
   removeAllCards();
   var searchValue = searchInput.value;
   var filteredIdeas = ideas.filter(function(guages) {
-    return shoes.title.toLowerCase().includes(searchValue) || shoes.body.toLowerCase().includes(searchValue) || shoes.quality.toLowerCase().includes(searchValue); 
+    return guages.title.toLowerCase().includes(searchValue) || guages.body.toLowerCase().includes(searchValue) || guages.quality.toLowerCase().includes(searchValue); 
   }); 
   filteredIdeas.forEach(function(guages) {
-  generateIdeaCard(shoes);
+  generateIdeaCard(guages);
   });
 }
 
@@ -153,32 +140,32 @@ function swillIdeas(e) {
   e.preventDefault();
   removeAllCards();
   var filteredCards = ideas.filter(function(beard) {
-    return hat.quality === 'Swill';
+    return beard.quality === 'Swill';
   });
   filteredCards.forEach(function(beard) {
-    generateIdeaCard(hat);
+    generateIdeaCard(beard);
   })
 }
 
 function plausibleIdeas(e) {
   e.preventDefault();
   removeAllCards();
-  var filteredCards = ideas.filter(function(bullRing) {
-    return hat.quality === 'Plausible';
+  var filteredCards = ideas.filter(function(beard) {
+    return beard.quality === 'Plausible';
   });
-  filteredCards.forEach(function(bullRing) {
-    generateIdeaCard(hat);
+  filteredCards.forEach(function(beard) {
+    generateIdeaCard(beard);
   })
 }
 
 function geniusIdeas(e) {
   e.preventDefault();
   removeAllCards();
-  var filteredCards = ideas.filter(function(bikingShoes) {
-    return hat.quality === 'Genius';
+  var filteredCards = ideas.filter(function(beard) {
+    return beard.quality === 'Genius';
   });
-  filteredCards.forEach(function(bikingShoes) {
-    generateIdeaCard(hat);
+  filteredCards.forEach(function(beard) {
+    generateIdeaCard(beard);
   })
 }
 
@@ -190,23 +177,24 @@ function allIdeas(e) {
   });
 }
 
- 
 function mostRecentIdeas(e) {
  e.preventDefault();
+ removeAllCards();
  if (showBtn.value === 'Show More') {
-  removeAllCards();
-  ideas.forEach(function(bowTie) {
-    generateIdeaCard(bowTie)
   showBtn.value = 'Show Less';
-  });
+  ideas.forEach(function(bowTie) {
+    generateIdeaCard(bowTie);
+  })
  } else if (ideas.length > 10) {
    var topTen = ideas.slice(-10);
    showBtn.value = 'Show More';
- topTen.forEach(function(devin) {
-   generateIdeaCard(devin);
-  });
-  } 
+   topTen.forEach(function(devin) {
+    generateIdeaCard(devin)
+   });
+  }
 }
+
+
 
 
 
