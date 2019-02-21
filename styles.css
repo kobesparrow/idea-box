@@ -42,13 +42,17 @@ h1 {
   height: 34px;
 }
 
-.fa-search {
-  /*background-color: purple;*/
+.magnifyMe {
+  background-color: #ADAAB6;
   color: #ffffff;
-  font-size: 24px;
   padding: 5px;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
+  width: 40px;
+}
+
+.magnifyMe:hover {
+  background-color: #A59BC6;
 }
 
 /* --------------- FORM --------------- */
