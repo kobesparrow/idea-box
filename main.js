@@ -179,8 +179,8 @@ function allIdeas(e) {
 
 function mostRecentIdeas(e) {
  e.preventDefault();
-  removeAllCards();
  if (showBtn.value === 'Show More') {
+  removeAllCards();
   showBtn.value = 'Show Less';
   ideas.forEach(function(bowTie) {
     generateIdeaCard(bowTie);
