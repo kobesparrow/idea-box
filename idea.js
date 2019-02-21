@@ -22,12 +22,7 @@ class Idea {
   }
 
   updateContent(newText, check) {
-    if (check) {
-      this.title = newText;
-    } else {
-      this.body = newText;
-    }
-
+    check ? this.title = newText : this.body = newText;
     this.saveToStorage(ideas);
   }
 
