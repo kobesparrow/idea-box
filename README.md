@@ -51,4 +51,8 @@ Provide a fluid and responsive client-side interface which relies on JavaScript,
 
 #### Specs:
 
+![screencapture-file-users-groot-desktop-mod1-1901-idea-box-index-html-2019-02-21-06_24_50 1](https://user-images.githubusercontent.com/37053236/53172864-9b1fba80-35a3-11e9-814d-1260d3457583.png)
 
+![screencapture-file-users-groot-desktop-mod1-1901-idea-box-index-html-2019-02-21-06_25_28](https://user-images.githubusercontent.com/37053236/53172882-a70b7c80-35a3-11e9-9324-2aac4efbd24d.png)
+
+![screencapture-file-users-groot-desktop-mod1-1901-idea-box-index-html-2019-02-21-06_37_14](https://user-images.githubusercontent.com/37053236/53172896-b1c61180-35a3-11e9-834f-c88e5fab1e07.png)
